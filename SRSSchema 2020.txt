@@ -1,0 +1,235 @@
+--------------------------------------------------------
+--  DDL for Table STUDENT
+--------------------------------------------------------
+
+  CREATE TABLE "STUDENT" 
+   (	"STU_ID" NUMBER(7,0), 
+	"STU_FNAME" VARCHAR2(20 ), 
+	"STU_LNAME" VARCHAR2(20 ), 
+	"STU_MAJOR" VARCHAR2(30 ), 
+	"STU_ADDRESS" VARCHAR2(55 ), 
+	"STU_PHONE" VARCHAR2(55 ), 
+	"STU_DOB" DATE
+   )  ;
+--------------------------------------------------------
+--  DDL for Table ROOM
+--------------------------------------------------------
+
+  CREATE TABLE "ROOM" 
+   (	"ROOM_NUM" CHAR(5 ), 
+	"CAMP_ID" NUMBER(4,0) DEFAULT 1
+   )  ;
+--------------------------------------------------------
+--  DDL for Table LECTURER
+--------------------------------------------------------
+
+  CREATE TABLE "LECTURER" 
+   (	"LEC_ID" NUMBER(6,0), 
+	"LEC_FNAME" VARCHAR2(20 ), 
+	"LEC_LNAME" VARCHAR2(20 )
+   )  ;
+--------------------------------------------------------
+--  DDL for Table ENROLMENT
+--------------------------------------------------------
+
+  CREATE TABLE "ENROLMENT" 
+   (	"ENROL_ID" NUMBER(8,0), 
+	"STU_ID" NUMBER(7,0), 
+	"CLASS_ID" NUMBER(6,0), 
+	"ENROL_GRADE" NUMBER(3,0), 
+	"ENROL_SEMNO" NUMBER(1,0), 
+	"ENROL_SEMYEAR" DATE
+   )  ;
+--------------------------------------------------------
+--  DDL for Table COURSE
+--------------------------------------------------------
+
+  CREATE TABLE "COURSE" 
+   (	"COURSE_CODE" CHAR(6 ), 
+	"COURSE_TITLE" VARCHAR2(25 )
+   )  ;
+--------------------------------------------------------
+--  DDL for Table CLASS
+--------------------------------------------------------
+
+  CREATE TABLE "CLASS" 
+   (	"CLASS_ID" NUMBER(6,0), 
+	"ROOM_NUM" CHAR(5 ), 
+	"LEC_ID" NUMBER(6,0), 
+	"COURSE_CODE" CHAR(6 )
+   ) ;
+--------------------------------------------------------
+--  DDL for Table CAMPUS
+--------------------------------------------------------
+
+  CREATE TABLE "CAMPUS" 
+   (	"CAMP_ID" NUMBER(4,0), 
+	"CAMP_NAME" VARCHAR2(30 )
+   ) ;
+Insert into STUDENT (STU_ID,STU_FNAME,STU_LNAME,STU_MAJOR,STU_ADDRESS,STU_DOB) values (1000000,'Laura','Smith','Software Development','19 Olive raod',to_date('19/AUG/82','DD/MON/RR'));
+Insert into STUDENT (STU_ID,STU_FNAME,STU_LNAME,STU_MAJOR,STU_ADDRESS,STU_DOB) values (1000001,'Ethan','Jones','Software Development','10 Bundoora street',to_date('23/OCT/84','DD/MON/RR'));
+Insert into STUDENT (STU_ID,STU_FNAME,STU_LNAME,STU_MAJOR,STU_ADDRESS,STU_DOB) values (1000002,'Kevin','Daniel','Business','2 Station Street ',to_date('12/MAR/87','DD/MON/RR'));
+Insert into STUDENT (STU_ID,STU_FNAME,STU_LNAME,STU_MAJOR,STU_ADDRESS,STU_DOB) values (1000003,'Kyle','Smith','Software Development','10 Station Street ',to_date('12/MAR/87','DD/MON/RR'));
+
+
+
+Insert into LECTURER (LEC_ID,LEC_FNAME,LEC_LNAME) values (1,'Peter','Shackleton','MH510','12345678');
+Insert into LECTURER (LEC_ID,LEC_FNAME,LEC_LNAME) values (3,'Anthony','DiSerio','PE318','98765432');
+Insert into LECTURER (LEC_ID,LEC_FNAME,LEC_LNAME) values (23,'Sam','Kaspi','PE332','92698412');
+
+Insert into CAMPUS (CAMP_ID,CAMP_NAME) values (2,'Collingwood');
+Insert into CAMPUS (CAMP_ID,CAMP_NAME) values (3,'Prahran');
+Insert into CAMPUS (CAMP_ID,CAMP_NAME) values (1,'Preston');
+
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('PE201',1);
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('MF102',2);
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('MH305',3);
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('PF305',1);
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('MH505',3);
+Insert into ROOM (ROOM_NUM,CAMP_ID) values ('MH502',3);
+
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT310','Advanced Database');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT309','Business Law');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT211','Database Programming');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT209','Java Programming');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT312','Project Management');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT201','Database System');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT301','Web Programming');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT233','Network Design');
+Insert into COURSE (COURSE_CODE,COURSE_TITLE) values ('BIT202','Mathematics');
+
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (1,'PE201',1,'BIT301');
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (2,'MF102',3,'BIT201');
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (3,'MH305',3,'BIT211');
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (4,'MH505',2,'BIT310');
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (5,'PF305',1,'BIT202');
+Insert into CLASS (CLASS_ID,ROOM_NUM,LEC_ID,COURSE_CODE) values (6,'MH502',1,'BIT233');
+
+
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (8,1000000,2,90,1,to_date('12/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (9,1000000,3,83,1,to_date('24/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (10,1000000,1,76,1,to_date('09/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (11,1000000,4,89,1,to_date('04/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (12,1000002,3,79,1,to_date('12/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (12,1000002,1,74,1,to_date('12/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (12,1000002,4,79,1,to_date('12/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (12,1000002,5,79,1,to_date('12/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (13,1000003,1,51,1,to_date('17/FEB/20','DD/MON/RR'));
+Insert into ENROLMENT (ENROL_ID,STU_ID,CLASS_ID,ENROL_GRADE,ENROL_SEMNO,ENROL_SEMYEAR) values (13,1000003,3,51,1,to_date('17/FEB/20','DD/MON/RR'));
+
+--------------------------------------------------------
+--  DDL for Index STUDENT_STU_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "STUDENT_STU_ID_PK" ON "STUDENT" ("STU_ID")  ;
+--------------------------------------------------------
+--  DDL for Index ROOM_ROOM_NUM_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "ROOM_ROOM_NUM_PK" ON "ROOM" ("ROOM_NUM") ;
+--------------------------------------------------------
+--  DDL for Index LECTURER_LEC_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "LECTURER_LEC_ID_PK" ON "LECTURER" ("LEC_ID") ;
+
+--------------------------------------------------------
+--  DDL for Index COURSE_COURSE_CODE_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "COURSE_COURSE_CODE_PK" ON "COURSE" ("COURSE_CODE");
+--------------------------------------------------------
+--  DDL for Index SYS_C007345
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SYS_C007345" ON "COURSE" ("COURSE_TITLE") ;
+--------------------------------------------------------
+--  DDL for Index CLASS_CLASS_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CLASS_CLASS_ID_PK" ON "CLASS" ("CLASS_ID") ;
+--------------------------------------------------------
+--  DDL for Index CAMPUS_CAMP_ID_PK
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "CAMPUS_CAMP_ID_PK" ON "CAMPUS" ("CAMP_ID") ;
+--------------------------------------------------------
+--  DDL for Index SYS_C007349
+--------------------------------------------------------
+
+  CREATE UNIQUE INDEX "SYS_C007349" ON "CAMPUS" ("CAMP_NAME")  ;
+--------------------------------------------------------
+--  Constraints for Table STUDENT
+--------------------------------------------------------
+
+  ALTER TABLE "STUDENT" ADD CONSTRAINT "STUDENT_STU_ID_PK" PRIMARY KEY ("STU_ID");
+  ALTER TABLE "STUDENT" ADD CONSTRAINT "STUDENT_STU_ID_CHECK" CHECK (Stu_ID BETWEEN 1000000 AND 9999999) ENABLE;
+  ALTER TABLE "STUDENT" MODIFY ("STU_MAJOR" CONSTRAINT "STUDENT_STU_MAJOR_NN" NOT NULL ENABLE);
+  ALTER TABLE "STUDENT" MODIFY ("STU_LNAME" CONSTRAINT "STUDENT_STU_LNAME_NN" NOT NULL ENABLE);
+  ALTER TABLE "STUDENT" MODIFY ("STU_FNAME" CONSTRAINT "STUDENT_STU_FNAME_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ROOM
+--------------------------------------------------------
+
+  ALTER TABLE "ROOM" ADD CONSTRAINT "ROOM_ROOM_NUM_PK" PRIMARY KEY ("ROOM_NUM");
+  ALTER TABLE "ROOM" ADD CONSTRAINT "ROOM_CAMP_ID_CHECK" CHECK (Camp_ID BETWEEN 1 AND 9999) ENABLE;
+  ALTER TABLE "ROOM" ADD CONSTRAINT "ROOM_ROOM_NUM_CHECK" CHECK (REGEXP_LIKE(Room_Num, '[A-Z][A-Z][0-9][0-9][0-9]')) ENABLE;
+--------------------------------------------------------
+--  Constraints for Table LECTURER
+--------------------------------------------------------
+
+  ALTER TABLE "LECTURER" ADD CONSTRAINT "LECTURER_LEC_ID_PK" PRIMARY KEY ("LEC_ID");
+  ALTER TABLE "LECTURER" ADD CONSTRAINT "LECTURER_LEC_ID_CHECK" CHECK (Lec_ID BETWEEN 1 AND 999999) ENABLE;
+  ALTER TABLE "LECTURER" MODIFY ("LEC_LNAME" CONSTRAINT "LECTURER_LEC_LNAME_NN" NOT NULL ENABLE);
+  ALTER TABLE "LECTURER" MODIFY ("LEC_FNAME" CONSTRAINT "LECTURER_LEC_FNAME_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table ENROLMENT
+--------------------------------------------------------
+
+  ALTER TABLE "ENROLMENT" ADD CONSTRAINT "ENROL_ID_PK" PRIMARY KEY ("ENROL_ID");
+  ALTER TABLE "ENROLMENT" ADD CONSTRAINT "check_enrol_2" CHECK (Stu_ID BETWEEN 1000000 AND 9999999) ENABLE;
+  ALTER TABLE "ENROLMENT" ADD CONSTRAINT "check_enrol_3" CHECK (Class_ID BETWEEN 1 AND 99999999) ENABLE;
+  ALTER TABLE "ENROLMENT" ADD CONSTRAINT "check_enrol_4" CHECK (Class_ID BETWEEN 1 AND 999999) ENABLE;
+  ALTER TABLE "ENROLMENT" MODIFY ("ENROL_SEMYEAR" CONSTRAINT "enrol_notnull1" NOT NULL ENABLE);
+  ALTER TABLE "ENROLMENT" MODIFY ("ENROL_SEMNO" CONSTRAINT "enrol_notnull2" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table COURSE
+--------------------------------------------------------
+
+  ALTER TABLE "COURSE" ADD UNIQUE ("COURSE_TITLE");
+  ALTER TABLE "COURSE" ADD CONSTRAINT "COURSE_COURSE_CODE_PK" PRIMARY KEY ("COURSE_CODE");
+  ALTER TABLE "COURSE" ADD CONSTRAINT "COURSE_COURSE_CODE_CHECK" CHECK (REGEXP_LIKE(Course_Code, '[A-Z][A-Z][A-Z][0-9][0-9][0-9]')) ENABLE;
+  ALTER TABLE "COURSE" MODIFY ("COURSE_TITLE" CONSTRAINT "COURSE_COURSE_TITLE_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Constraints for Table CLASS
+--------------------------------------------------------
+
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_CLASS_ID_PK" PRIMARY KEY ("CLASS_ID");
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_CLASS_ID_CHECK" CHECK (Class_ID BETWEEN 1 AND 999999) ENABLE;
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_LEC_ID_CHECK" CHECK (Lec_ID BETWEEN 1 AND 999999) ENABLE;
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_ROOM_NUM_CHECK" CHECK (REGEXP_LIKE(Room_Num, '[A-Z][A-Z][0-9][0-9][0-9]')) ENABLE;
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_COURSE_CODE_CHECK" CHECK (REGEXP_LIKE(Course_Code, '[A-Z][A-Z][A-Z][0-9][0-9][0-9]')) ENABLE;
+--------------------------------------------------------
+--  Constraints for Table CAMPUS
+--------------------------------------------------------
+
+  ALTER TABLE "CAMPUS" ADD UNIQUE ("CAMP_NAME");
+  ALTER TABLE "CAMPUS" ADD CONSTRAINT "CAMPUS_CAMP_ID_PK" PRIMARY KEY ("CAMP_ID");
+  ALTER TABLE "CAMPUS" ADD CONSTRAINT "CAMPUS_CAMP_ID_CHECK" CHECK (Camp_ID BETWEEN 1 AND 9999) ENABLE;
+  ALTER TABLE "CAMPUS" MODIFY ("CAMP_NAME" CONSTRAINT "CAMPUS_CAMP_NAME_NN" NOT NULL ENABLE);
+--------------------------------------------------------
+--  Ref Constraints for Table ROOM
+--------------------------------------------------------
+
+  ALTER TABLE "ROOM" ADD CONSTRAINT "ROOM_CAMP_ID_FK" FOREIGN KEY ("CAMP_ID")
+	  REFERENCES "CAMPUS" ("CAMP_ID") ENABLE;
+--------------------------------------------------------
+--  Ref Constraints for Table CLASS
+--------------------------------------------------------
+
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_COURSE_CODE_FK" FOREIGN KEY ("COURSE_CODE")
+	  REFERENCES "COURSE" ("COURSE_CODE") ENABLE;
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_LEC_ID_FK" FOREIGN KEY ("LEC_ID")
+	  REFERENCES "LECTURER" ("LEC_ID") ENABLE;
+  ALTER TABLE "CLASS" ADD CONSTRAINT "CLASS_ROOM_NUM_FK" FOREIGN KEY ("ROOM_NUM")
+	  REFERENCES "ROOM" ("ROOM_NUM") ENABLE;
